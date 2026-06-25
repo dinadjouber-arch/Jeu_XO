@@ -207,9 +207,21 @@ public class Main {
 
        winner=false;  //si on arrive ici c est match nul
 
-
-
     }
+
+    public static void ecranFin()
+    {
+        //s il y a un gagnant
+        if(winner)
+        {
+            System.out.println(currentPlayer+"a gagne");
+        }
+        else
+        {
+            System.out.println("match nul");
+        }
+    }
+
 
 
 
