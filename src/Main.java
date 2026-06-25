@@ -9,7 +9,8 @@ import java.util.Objects;
 public class Main {
 
     public static String currentPlayer="X";
-    boolean finJeu=false;
+    static boolean finJeu=false;
+    static JButton [][] boutons=new JButton[3][3];
 
     public static void main(String[] args) {
 
@@ -19,7 +20,6 @@ public class Main {
         JPanel panel=new JPanel();
         JLabel texte=new JLabel();
         JPanel grille=new JPanel();
-        JButton [][] boutons=new JButton[3][3];
         String playerX="X";
         String playerO="O";
 
@@ -87,12 +87,20 @@ public class Main {
                 tuile.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        if(finJeu)
+                            return;
                         JButton tuile= (JButton) e.getSource();
                         if(Objects.equals(tuile.getText(), ""))
                         {
                             tuile.setText(currentPlayer);
-                            currentPlayer= Objects.equals(currentPlayer, "X") ?playerO:playerX;
-                            texte.setText("Au tour de "+currentPlayer);
+                            finJeu();
+
+                            if(!finJeu)
+                            {
+                                currentPlayer= Objects.equals(currentPlayer, "X") ?playerO:playerX;
+                                texte.setText("Au tour de "+currentPlayer);
+                            }
+
                         }
                     }
                 });
@@ -107,7 +115,7 @@ public class Main {
 
     }
 
-    void finJeu(JButton[][] boutons)
+    static void finJeu()
     {
 
 
