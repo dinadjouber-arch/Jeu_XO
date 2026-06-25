@@ -116,7 +116,7 @@ public class Main {
         {
             finJeu=true;
             for (int j = 0; j < 2; j++) {
-                if (boutons[i][j] != boutons[i][j + 1]) {
+                if (!Objects.equals(boutons[i][j].getText(), boutons[i][j + 1].getText())) {
                     finJeu = false;
                     break;
                 }
@@ -131,7 +131,7 @@ public class Main {
         {
             finJeu=true;
             for (int j = 0; j < 2; j++) {
-                if (boutons[j][i] != boutons[j][i + 1]) {
+                if (!Objects.equals(boutons[j][i].getText(), boutons[j][i + 1].getText())) {
                     finJeu = false;
                     break;
                 }
@@ -146,7 +146,7 @@ public class Main {
         finJeu=true;
         for(int i=0;i<2;i++)
         {
-            if(boutons[i][i]!=boutons[i+1][i+1])
+            if(!Objects.equals(boutons[i][i].getText(), boutons[i + 1][i + 1].getText()))
             {
                 finJeu=false;
                 break;
