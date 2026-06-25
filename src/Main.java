@@ -7,8 +7,13 @@ import java.util.Objects;
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+
     public static String currentPlayer="X";
+    boolean finJeu=false;
+
     public static void main(String[] args) {
+
+
 
         JFrame fenetre=new JFrame("Jeu de XO");
         JPanel panel=new JPanel();
@@ -74,7 +79,7 @@ public class Main {
                 grille.add(tuile);
                 tuile.setBackground(Color.pink);
 
-                tuile.setForeground(Color.white);
+                tuile.setForeground(Color.cyan);
                 tuile.setFont(new Font("Arial", Font.BOLD, 120));
                 tuile.setFocusable(false);
 
@@ -83,10 +88,12 @@ public class Main {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         JButton tuile= (JButton) e.getSource();
-                        tuile.setText(currentPlayer);
-
-                        currentPlayer= Objects.equals(currentPlayer, "X") ?playerO:playerX;
-                        texte.setText("C'est le tour du joueur "+currentPlayer);
+                        if(Objects.equals(tuile.getText(), ""))
+                        {
+                            tuile.setText(currentPlayer);
+                            currentPlayer= Objects.equals(currentPlayer, "X") ?playerO:playerX;
+                            texte.setText("Au tour de "+currentPlayer);
+                        }
                     }
                 });
 
@@ -99,4 +106,71 @@ public class Main {
         fenetre.setVisible(true); //doit etre place a la fin
 
     }
+
+    void finJeu(JButton[][] boutons)
+    {
+
+
+        //horizontalement
+        for(int i=0;i<3;i++)
+        {
+            finJeu=true;
+            for (int j = 0; j < 2; j++) {
+                if (boutons[i][j] != boutons[i][j + 1]) {
+                    finJeu = false;
+                    break;
+                }
+            }
+        }
+
+        if(finJeu)
+            return;
+
+        //verticalement
+        for(int i=0;i<3;i++)
+        {
+            finJeu=true;
+            for (int j = 0; j < 2; j++) {
+                if (boutons[j][i] != boutons[j][i + 1]) {
+                    finJeu = false;
+                    break;
+                }
+            }
+        }
+
+        if(finJeu)
+            return;
+
+
+        //diagonale
+        finJeu=true;
+        for(int i=0;i<2;i++)
+        {
+            if(boutons[i][i]!=boutons[i+1][i+1])
+            {
+                finJeu=false;
+                break;
+            }
+        }
+
+        if(finJeu)
+            return;
+
+        finJeu=true;
+        for(int i=0;i<2;i++)
+        {
+            if(boutons[i][3-i]!=boutons[i+1][3-(i+1)])
+            {
+                finJeu=false;
+                break;
+            }
+        }
+
+
+
+    }
+
+
+
+
 }
