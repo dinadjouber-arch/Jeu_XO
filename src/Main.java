@@ -1,9 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Objects;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+    public static String currentPlayer="X";
     public static void main(String[] args) {
 
         JFrame fenetre=new JFrame("Jeu de XO");
@@ -13,7 +17,7 @@ public class Main {
         JButton [][] boutons=new JButton[3][3];
         String playerX="X";
         String playerO="O";
-        String currentPlayer=playerX;
+
 
 
         //creation de la fenetre du jeu
@@ -23,7 +27,7 @@ public class Main {
         fenetre.setLocationRelativeTo(null);
         fenetre.setResizable(false);
         fenetre.setAlwaysOnTop(true);
-        fenetre.setVisible(true);
+
 
 
 
@@ -54,7 +58,7 @@ public class Main {
         //tracer la grille
 
         grille.setLayout(new GridLayout(3,3));
-        grille.setBackground(Color.pink);
+        grille.setBackground(Color.cyan);
 
 
         //ajouter la grille a la fenetre
@@ -64,7 +68,35 @@ public class Main {
 
         for(int i=0;i<3;i++)
             for(int j=0;j<3;j++)
-            {}
+            {
+                JButton tuile=new JButton();
+                boutons[i][j]=tuile;
+                grille.add(tuile);
+                tuile.setBackground(Color.pink);
+
+                tuile.setForeground(Color.white);
+                tuile.setFont(new Font("Arial", Font.BOLD, 120));
+                tuile.setFocusable(false);
+
+
+                tuile.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        JButton tuile= (JButton) e.getSource();
+                        tuile.setText(currentPlayer);
+
+                        currentPlayer= Objects.equals(currentPlayer, "X") ?playerO:playerX;
+                        texte.setText("C'est le tour du joueur "+currentPlayer);
+                    }
+                });
+
+
+
+
+            }
+
+
+        fenetre.setVisible(true); //doit etre place a la fin
 
     }
 }
