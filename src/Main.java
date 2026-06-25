@@ -11,6 +11,7 @@ public class Main {
     public static String currentPlayer="X";
     static boolean finJeu=false;
     static JButton [][] boutons=new JButton[3][3];
+    static boolean winner=false;//cette variable sert a savoir s il y a un gagnant(winner=true) ou un match nul (winner=false)
 
     public static void main(String[] args) {
 
@@ -117,6 +118,7 @@ public class Main {
 
     static void finJeu()
     {
+        winner=false;
 
 
         //horizontalement
@@ -132,7 +134,10 @@ public class Main {
                 }
             }
             if(finJeu)
+            {
+                winner=true;
                 return;
+            }
         }
 
 
@@ -148,7 +153,10 @@ public class Main {
                 }
             }
             if(finJeu)
+            {
+                winner=true;
                 return;
+            }
         }
 
 
@@ -165,7 +173,10 @@ public class Main {
         }
 
         if(finJeu)
+        {
+            winner=true;
             return;
+        }
 
         finJeu=true;
         for(int i=0;i<2;i++)
@@ -176,6 +187,25 @@ public class Main {
                 break;
             }
         }
+
+        if(finJeu)
+        {
+            winner=true;
+            return;
+        }
+
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                if(Objects.equals(boutons[i][j].getText(), ""))
+                {
+                    return; // il reste une case vide donc le jeu continue
+                }
+            }
+        }
+
+       winner=false;  //si on arrive ici c est match nul
 
 
 
