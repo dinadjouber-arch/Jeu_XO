@@ -28,17 +28,22 @@ public class Main {
         texte.setBackground(Color.pink);
         texte.setForeground(Color.white); //it's the font color
         texte.setFont(new Font("Times New Roman",Font.BOLD,50));
-        texte.setVerticalAlignment(JLabel.TOP);
         texte.setHorizontalAlignment(JLabel.CENTER);
         texte.setText("Jeu de XO");
         texte.setOpaque(true);
+
+
+        //organiser le panel
+
+        panel.setLayout(new BorderLayout()); //divise le panel en zones center,north...
+
 
 
 
         //Ajoout du panel a la fenetre et du label au panel
 
         panel.add(texte);
-        fenetre.add(panel);
+        fenetre.add(panel, BorderLayout.NORTH);
 
     }
 }
