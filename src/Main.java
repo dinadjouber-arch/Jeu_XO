@@ -116,37 +116,40 @@ public class Main {
         {
             finJeu=true;
             for (int j = 0; j < 2; j++) {
-                if (!Objects.equals(boutons[i][j].getText(), boutons[i][j + 1].getText())) {
+                //on verifie si il y a une ligne qui est pleine et on sait aussi que si une case est vide la ligne n est pas pleine
+                if (!Objects.equals(boutons[i][j].getText(), boutons[i][j + 1].getText())  ||  Objects.equals(boutons[i][j].getText(), "")  ||  Objects.equals(boutons[i][j + 1].getText(), ""))
+                {
                     finJeu = false;
                     break;
                 }
             }
+            if(finJeu)
+                return;
         }
 
-        if(finJeu)
-            return;
+
 
         //verticalement
         for(int i=0;i<3;i++)
         {
             finJeu=true;
             for (int j = 0; j < 2; j++) {
-                if (!Objects.equals(boutons[j][i].getText(), boutons[j][i + 1].getText())) {
+                if (!Objects.equals(boutons[j][i].getText(), boutons[j+1][i].getText()) ||  Objects.equals(boutons[j][i].getText(), "")  ||  Objects.equals(boutons[j+1][i].getText(), "")) {
                     finJeu = false;
                     break;
                 }
             }
+            if(finJeu)
+                return;
         }
 
-        if(finJeu)
-            return;
 
 
         //diagonale
         finJeu=true;
         for(int i=0;i<2;i++)
         {
-            if(!Objects.equals(boutons[i][i].getText(), boutons[i + 1][i + 1].getText()))
+            if(!Objects.equals(boutons[i][i].getText(), boutons[i + 1][i + 1].getText())  ||  Objects.equals(boutons[i][i].getText(), "")  ||  Objects.equals(boutons[i+1][i + 1].getText(), ""))
             {
                 finJeu=false;
                 break;
@@ -159,7 +162,7 @@ public class Main {
         finJeu=true;
         for(int i=0;i<2;i++)
         {
-            if(boutons[i][3-i]!=boutons[i+1][3-(i+1)])
+            if(!Objects.equals(boutons[i][2 - i].getText(), boutons[i + 1][2 - (i + 1)].getText())  ||  Objects.equals(boutons[i][2-i].getText(), "")  ||  Objects.equals(boutons[i+1][2-(i+ 1)].getText(), ""))
             {
                 finJeu=false;
                 break;
