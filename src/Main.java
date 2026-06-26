@@ -112,11 +112,11 @@ public class Main {
         //s il y a un gagnant
         if(winner)
         {
-            texte.setText(currentPlayer+" a gagné");
+            texte.setText("Le joueur "+currentPlayer+" a gagné");
         }
         else
         {
-            texte.setText("match nul");
+            texte.setText("Match nul!");
         }
     }
 
