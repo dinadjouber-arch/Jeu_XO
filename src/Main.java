@@ -221,10 +221,37 @@ public class Main {
             }
 
 
+        //ajout d'un bouton pour pouvoir recommencer la partie
+        JButton nouveauJeu = new JButton("Nouvelle partie");
+
+        fenetre.add(nouveauJeu, BorderLayout.SOUTH);
+
+
+        nouveauJeu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                for(int i=0;i<3;i++)
+                {
+                    for(int j=0;j<3;j++)
+                    {
+                        boutons[i][j].setText("");
+                    }
+                }
+
+                currentPlayer = "X";
+                finJeu = false;
+                winner = false;
+
+                texte.setText("Au tour de X");
+            }
+        });
+
 
         fenetre.setVisible(true); //doit etre place a la fin
 
     }
+
 
 
 
