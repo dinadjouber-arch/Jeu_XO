@@ -13,13 +13,120 @@ public class Main {
     static JButton [][] boutons=new JButton[3][3];
     static boolean winner=false;//cette variable sert a savoir s il y a un gagnant(winner=true) ou un match nul (winner=false)
 
+    public static JLabel texte=new JLabel();
+
+    static void finJeu()
+    {
+        //horizontalement
+        for(int i=0;i<3;i++)
+        {
+            finJeu=true;
+            for (int j = 0; j < 2; j++) {
+                //on verifie si il y a une ligne qui est pleine et on sait aussi que si une case est vide la ligne n est pas pleine
+                if (!Objects.equals(boutons[i][j].getText(), boutons[i][j + 1].getText())  ||  Objects.equals(boutons[i][j].getText(), "")  ||  Objects.equals(boutons[i][j + 1].getText(), ""))
+                {
+                    finJeu = false;
+                    break;
+                }
+            }
+            if(finJeu)
+            {
+                winner=true;
+                return;
+            }
+        }
+
+
+
+        //verticalement
+        for(int i=0;i<3;i++)
+        {
+            finJeu=true;
+            for (int j = 0; j < 2; j++) {
+                if (!Objects.equals(boutons[j][i].getText(), boutons[j+1][i].getText()) ||  Objects.equals(boutons[j][i].getText(), "")  ||  Objects.equals(boutons[j+1][i].getText(), "")) {
+                    finJeu = false;
+                    break;
+                }
+            }
+            if(finJeu)
+            {
+                winner=true;
+                return;
+            }
+        }
+
+
+
+        //diagonale principale
+        finJeu=true;
+        for(int i=0;i<2;i++)
+        {
+            if(!Objects.equals(boutons[i][i].getText(), boutons[i + 1][i + 1].getText())  ||  Objects.equals(boutons[i][i].getText(), "")  ||  Objects.equals(boutons[i+1][i + 1].getText(), ""))
+            {
+                finJeu=false;
+                break;
+            }
+        }
+
+        if(finJeu)
+        {
+            winner=true;
+            return;
+        }
+
+        finJeu=true;
+        for(int i=0;i<2;i++)
+        {
+            if(!Objects.equals(boutons[i][2 - i].getText(), boutons[i + 1][2 - (i + 1)].getText())  ||  Objects.equals(boutons[i][2-i].getText(), "")  ||  Objects.equals(boutons[i+1][2-(i+ 1)].getText(), ""))
+            {
+                finJeu=false;
+                break;
+            }
+        }
+
+        if(finJeu)
+        {
+            winner=true;
+            return;
+        }
+
+        //anti-diagonale
+        for(int i=0;i<3;i++)
+        {
+            for(int j=0;j<3;j++)
+            {
+                if(Objects.equals(boutons[i][j].getText(), ""))
+                {
+                    return; // il reste une case vide donc le jeu continue
+                }
+            }
+        }
+
+        finJeu=true;
+        winner=false;  //si on arrive ici c est match nul
+
+    }
+
+    public static void ecranFin()
+    {
+        //s il y a un gagnant
+        if(winner)
+        {
+            texte.setText(currentPlayer+" a gagne");
+        }
+        else
+        {
+            texte.setText("match nul");
+        }
+    }
+
     public static void main(String[] args) {
 
 
 
         JFrame fenetre=new JFrame("Jeu de XO");
         JPanel panel=new JPanel();
-        JLabel texte=new JLabel();
+
         JPanel grille=new JPanel();
         String playerX="X";
         String playerO="O";
@@ -119,111 +226,7 @@ public class Main {
 
     }
 
-    static void finJeu()
-    {
 
-
-        //horizontalement
-        for(int i=0;i<3;i++)
-        {
-            finJeu=true;
-            for (int j = 0; j < 2; j++) {
-                //on verifie si il y a une ligne qui est pleine et on sait aussi que si une case est vide la ligne n est pas pleine
-                if (!Objects.equals(boutons[i][j].getText(), boutons[i][j + 1].getText())  ||  Objects.equals(boutons[i][j].getText(), "")  ||  Objects.equals(boutons[i][j + 1].getText(), ""))
-                {
-                    finJeu = false;
-                    break;
-                }
-            }
-            if(finJeu)
-            {
-                winner=true;
-                return;
-            }
-        }
-
-
-
-        //verticalement
-        for(int i=0;i<3;i++)
-        {
-            finJeu=true;
-            for (int j = 0; j < 2; j++) {
-                if (!Objects.equals(boutons[j][i].getText(), boutons[j+1][i].getText()) ||  Objects.equals(boutons[j][i].getText(), "")  ||  Objects.equals(boutons[j+1][i].getText(), "")) {
-                    finJeu = false;
-                    break;
-                }
-            }
-            if(finJeu)
-            {
-                winner=true;
-                return;
-            }
-        }
-
-
-
-        //diagonale
-        finJeu=true;
-        for(int i=0;i<2;i++)
-        {
-            if(!Objects.equals(boutons[i][i].getText(), boutons[i + 1][i + 1].getText())  ||  Objects.equals(boutons[i][i].getText(), "")  ||  Objects.equals(boutons[i+1][i + 1].getText(), ""))
-            {
-                finJeu=false;
-                break;
-            }
-        }
-
-        if(finJeu)
-        {
-            winner=true;
-            return;
-        }
-
-        finJeu=true;
-        for(int i=0;i<2;i++)
-        {
-            if(!Objects.equals(boutons[i][2 - i].getText(), boutons[i + 1][2 - (i + 1)].getText())  ||  Objects.equals(boutons[i][2-i].getText(), "")  ||  Objects.equals(boutons[i+1][2-(i+ 1)].getText(), ""))
-            {
-                finJeu=false;
-                break;
-            }
-        }
-
-        if(finJeu)
-        {
-            winner=true;
-            return;
-        }
-
-        for(int i=0;i<3;i++)
-        {
-            for(int j=0;j<3;j++)
-            {
-                if(Objects.equals(boutons[i][j].getText(), ""))
-                {
-                    return; // il reste une case vide donc le jeu continue
-                }
-            }
-        }
-
-        finJeu=true;
-       winner=false;  //si on arrive ici c est match nul
-
-    }
-
-    public static void ecranFin()
-    {
-        //s il y a un gagnant
-        if(winner)
-        {
-            System.out.println(currentPlayer+"a gagne");
-        }
-        else
-        {
-            System.out.println("match nul");
-        }
-    }
 
 
 
