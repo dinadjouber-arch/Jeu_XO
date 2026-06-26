@@ -88,20 +88,21 @@ public class Main {
                 tuile.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        if(finJeu)
-                            return;
+
                         JButton tuile= (JButton) e.getSource();
-                        if(Objects.equals(tuile.getText(), ""))
+                        if(!finJeu)
                         {
+                        if(Objects.equals(tuile.getText(), "")) {
                             tuile.setText(currentPlayer);
                             finJeu();
 
-                            if(!finJeu)
-                            {
-                                currentPlayer= Objects.equals(currentPlayer, "X") ?playerO:playerX;
-                                texte.setText("Au tour de "+currentPlayer);
+                            if (finJeu) {
+                                ecranFin();
+                            } else {
+                                currentPlayer = Objects.equals(currentPlayer, "X") ? playerO : playerX;
+                                texte.setText("Au tour de " + currentPlayer);
                             }
-
+                        }
                         }
                     }
                 });
@@ -109,7 +110,9 @@ public class Main {
 
 
 
+
             }
+
 
 
         fenetre.setVisible(true); //doit etre place a la fin
@@ -118,7 +121,6 @@ public class Main {
 
     static void finJeu()
     {
-        winner=false;
 
 
         //horizontalement
@@ -205,6 +207,7 @@ public class Main {
             }
         }
 
+        finJeu=true;
        winner=false;  //si on arrive ici c est match nul
 
     }
