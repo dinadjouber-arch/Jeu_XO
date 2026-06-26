@@ -112,7 +112,7 @@ public class Main {
         //s il y a un gagnant
         if(winner)
         {
-            texte.setText(currentPlayer+" a gagne");
+            texte.setText(currentPlayer+" a gagné");
         }
         else
         {
