@@ -4,7 +4,7 @@
 
 Ce projet est un jeu de Morpion développé en **Java** avec une interface graphique réalisée avec **Swing**.
 
-![grille de XO](screenshots/xo.png)
+![grille de XO](screenshots/img.png)
 
 Le jeu permet à deux joueurs de s'affronter sur une grille de 3x3 cases :
 - Le joueur **X** commence.
