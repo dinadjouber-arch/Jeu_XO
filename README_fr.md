@@ -17,7 +17,7 @@ Le jeu permet à deux joueurs de s'affronter sur une grille de 3x3 cases :
 
  Interface graphique avec Java Swing  
  Grille de jeu 3x3 dynamique  
- Alternance automatique entre les joueurs X et O  
+ Alternance automatique entre les joueurs X et O  (on les place en appuyant sur la case avec la souris)
  Détection des victoires :
 - Lignes horizontales
 - Colonnes verticales
