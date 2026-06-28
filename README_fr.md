@@ -26,6 +26,7 @@ Le jeu permet à deux joueurs de s'affronter sur une grille de 3x3 cases :
  Détection des matchs nuls  
  Blocage du jeu après la fin de la partie  
  Affichage du résultat de la partie
+ Option permettant de démarrer une nouvelle partie à tout moment
 
 
 ##  Technologies utilisées
