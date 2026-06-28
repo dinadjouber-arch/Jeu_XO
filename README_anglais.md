@@ -1,4 +1,4 @@
-# XO Game (Tic-Tac-Toe)
+# Tic-Tac-Toe Game 
 
 # Description
 
@@ -26,6 +26,7 @@ The game allows two players to compete on a 3x3 grid:
 - Draw detection
 - Game blocking after the end of the match
 - Display of the game result
+- The possibility to start a new game at any moment
 
 
 ## Technologies Used
