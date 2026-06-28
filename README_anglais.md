@@ -8,7 +8,7 @@ This project is a Tic-Tac-Toe game developed in **Java** with a graphical interf
 
 The game allows two players to compete on a 3x3 grid:
 - Player **X** starts.
-- Players place their symbols one after another.
+- Players place their symbols one after another using the cursor.
 - The first player to align 3 symbols wins.
 - If the grid is full without a winner, the game ends in a draw.
 
